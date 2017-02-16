@@ -14,7 +14,7 @@
 
         <link rel='stylesheet' type='text/css' href='./public/css/main.css'>
     </head>
-    <body ng-controller="DashboardController as dashboard" class="container">
+    <body ng-controller="DashboardController as dashCtl" class="container">
       <nav class="navbar navbar-default navbar-static-top" id='steel'>
         <div class="container">
         <ul class="nav navbar-nav navbar-right">
@@ -28,5 +28,37 @@
 
         <h1>Welcome to your dashboard!</h1>
         <p><a href="/logout" class="btn btn-lg btn-danger">Logout</a></p>
+
+        <h3>Shows</h3>
+
+        <ul class='horizontal'>
+          <li ng-repeat='show in dashCtl.data.results'>
+            <img src='{{show.artwork_304x171}}'><br>
+             <!-- <p>{{show.title}}</p> -->
+          </li>
+        </ul>
+
+
+        <h3>Search shows</h3>
+        <form ng-submit='dashCtl.search()'>
+          <input type='text' ng-model='dashCtl.searchText' placeholder='Search for shows'>
+          <input type='submit'>
+        </form>
+
+        <ul class='horizontal'>
+          <li ng-repeat='result in dashCtl.showsResponse' ng-click='dashCtl.showInfo()'>
+            <p hidden id='showID'>{{result.id}}</p>
+            <img  src='{{result.artwork_304x171}}'>
+
+          </li>
+        </ul>
+
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
     </body>
 </html>

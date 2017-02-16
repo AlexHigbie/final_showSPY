@@ -19,6 +19,9 @@ img {
     opacity: 0.7;
 }
 
+.horizontal {
+  display:inline;
+}
 
 .center {
     position: absolute;

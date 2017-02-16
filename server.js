@@ -4,7 +4,9 @@ var mongoose = require('mongoose')
 var bcrypt = require('bcryptjs')
 var sessionsModule = require('client-sessions')
 
+
 var app = express();
+
 
 mongoose.connect('mongodb://localhost/alexApp', function(mongooseErr){
   if(mongooseErr) {console.error(mongooseErr)}
