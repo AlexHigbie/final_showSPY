@@ -4,6 +4,7 @@
         <title>Dashboard</title>
         <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
         <script src="./js/module.dashboard.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
         <!-- Optional theme -->
@@ -12,7 +13,7 @@
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-        <link rel='stylesheet' type='text/css' href='./public/css/main.css'>
+        <link rel='stylesheet' type='text/css' href='/css/main.css'>
     </head>
     <body ng-controller="DashboardController as dashCtl" class="container">
       <nav class="navbar navbar-default navbar-static-top" id='steel'>
@@ -29,15 +30,36 @@
         <h1>Welcome to your dashboard!</h1>
         <p><a href="/logout" class="btn btn-lg btn-danger">Logout</a></p>
 
-        <h3>Shows</h3>
+        <!-- <h3>Shows</h3>
 
         <ul class='horizontal'>
           <li ng-repeat='show in dashCtl.data.results'>
-            <img src='{{show.artwork_304x171}}'><br>
+            <img src='{{show.artwork_304x171}}'><br> -->
              <!-- <p>{{show.title}}</p> -->
-          </li>
-        </ul>
+          <!-- </li>
+        </ul> -->
 
+
+        <!-- <a data-toggle="modal" href="#normalModal" class="btn btn-default">Normal</a>
+        <div id="normalModal" class="modal fade">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Modal title</h4>
+              </div>
+              <div class="modal-body">
+                <p>One fine body&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div> -->
+            <!-- /.modal-content -->
+          <!-- </div> -->
+          <!-- /.modal-dialog -->
+        <!-- </div> -->
 
         <h3>Search shows</h3>
         <form ng-submit='dashCtl.search()'>
@@ -45,12 +67,50 @@
           <input type='submit'>
         </form>
 
-        <ul class='horizontal'>
-          <li ng-repeat='result in dashCtl.showsResponse' ng-click='dashCtl.showInfo()'>
-            <p hidden id='showID'>{{result.id}}</p>
-            <img  src='{{result.artwork_304x171}}'>
 
-          </li>
+        <ul class='horizontal'>
+          <li ng-repeat='result in dashCtl.showsResponse' ng-click='dashCtl.showInfo(result)'>
+            <!-- <p hidden id='showID'>{{result.id}}</p> -->
+            <a data-toggle="modal" href="#normalModal" class="btn btn-default" >
+              <img  ng-src='{{result.artwork_304x171}}'>
+            </a>
+            <div id="normalModal" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4>{{result.title}}</h4>
+                  </div> -->
+                  <div class="modal-body">
+                    <!-- <p>One fine body&hellip;</p> -->
+                    <img ng-src='{{dashCtl.moreInfo.artwork_304x171}}'>
+                    <p>{{dashCtl.moreInfo.overview}}</p>
+                    <h5>Where to find it?</h5>
+                      <ul>
+                        <li ng-repeat='each in dashCtl.showInfoSources'>
+                          <p>{{each.source}}</p>
+                        </li>
+                      </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+
+                          <!-- <ul class='horizontal'>
+                              <li ng-repeat='source in dashCtl.showInfoSources'>
+                                <p>{{source.source}}</p>
+                              </li>
+                          </ul> -->
+
+
+
+            </li>
         </ul>
 
 

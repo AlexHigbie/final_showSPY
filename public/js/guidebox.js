@@ -1,30 +1,25 @@
-angular.module('guideboxApp', [])
-    .controller('guideboxController', Guidebox)
+// Get the modal
+var modal = document.getElementById('myModal');
 
-var client = require('guidebox')
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
 
-var Guidebox = new client('ae8273f03e1e2c7171d25f4fb27ad3b646063eaa');
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-function Guidebox() {
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+    modal.style.display = "block";
+}
 
-  var gCtl = this;
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
 
-
-  function getNewMovies(){
-    var newMovies = Guidebox.updates.list({object: 'movie', type: 'new', time:'1487177673'});
-    return newMovies
-  }
-
-
-
-
-
-
-
-    // Guidebox info
-    var newShows = Guidebox.updates.list({ object: 'show', type: 'new', time:'1487177673'});
-    var newMovies = Guidebox.updates.list({object: 'movie', type: 'new', time:'1487177673'});
-
-
-
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }

@@ -1,12 +1,8 @@
 angular.module('module.dashboard', [])
     .controller('DashboardController', Dashboard);
 
-var client = require('guidebox')
 
-var Guidebox = new client('ae8273f03e1e2c7171d25f4fb27ad3b646063eaa');
-var moviesUpdates = Guidebox.updates.list({object: 'movie', type: 'new', time:'1487177673'});
-
-    dashboard.$inject=['$http']
+    Dashboard.$inject=['$http']
 
 function Dashboard($http) {
     console.info('Dashboard.initialized');
@@ -54,27 +50,28 @@ function Dashboard($http) {
       })
     }
 
-    dashCtl.showInfo = function() {
-      var id = document.getElementById('showID').textContent
-      console.log(id)
-      $http.get('http://api-public.guidebox.com/v2/shows/' + id + '?api_key=ae8273f03e1e2c7171d25f4fb27ad3b646063eaa')
+    dashCtl.showInfo = function(result) {
+      console.log(result)
+      // console.log(id)
+      $http.get('http://api-public.guidebox.com/v2/shows/' + result.id + '/available_content?api_key=ae8273f03e1e2c7171d25f4fb27ad3b646063eaa')
       .then(function(res, err){
         console.log(res.data)
+        dashCtl.showInfoSources = res.data.results.web.episodes.all_sources
+      })
+      $http.get('http://api-public.guidebox.com/v2/shows/'+ result.id +'?api_key=ae8273f03e1e2c7171d25f4fb27ad3b646063eaa')
+      .then(function(res, err){
+        console.log(res.data)
+        dashCtl.moreInfo = res.data
       })
     }
 
-    function getTechNews3() {
-          console.log('making http request')
-          $http.get('https://newsapi.org/v1/articles?source=techradar&sortBy=top&apiKey=0251ee6c7b8948c19e35f7276a29e46b')
-            .then(function(res, err){
-              console.log(res.data)
-              dashCtl.articlesTech3 = res.data.articles
-            })
-      }
+
+
+
 
 
     getNewShows();
     test();
-    getTechNews3();
+
     // getNewMovies();
 }
