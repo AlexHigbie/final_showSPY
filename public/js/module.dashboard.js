@@ -65,6 +65,31 @@ function Dashboard($http) {
       })
     }
 
+    dashCtl.searchMovies = function(){
+      var movie = dashCtl.searchMovieText
+      console.log('you searched for ', movie)
+      $http.get('http://api-public.guidebox.com/v2/search?api_key=ae8273f03e1e2c7171d25f4fb27ad3b646063eaa&type=movie&query='+ movie)
+      .then(function(res, err){
+        console.log(res.data)
+        dashCtl.moviesResponse = res.data.results
+      })
+    }
+
+    dashCtl.moviesInfo = function(result) {
+      console.log(result)
+      console.log(result.id)
+      // $http.get('http://api-public.guidebox.com/v2/movies/' + result.id + '/available_content?api_key=ae8273f03e1e2c7171d25f4fb27ad3b646063eaa')
+      // .then(function(res, err){
+      //   console.log(res.data)
+        // dashCtl.movieInfoSources = res.data.results.web.episodes.all_sources
+      // })
+      $http.get('http://api-public.guidebox.com/v2/movies/'+ result.id +'?api_key=ae8273f03e1e2c7171d25f4fb27ad3b646063eaa')
+      .then(function(res, err){
+        console.log(res.data)
+        dashCtl.movieInfo = res.data
+      })
+    }
+
 
 
 

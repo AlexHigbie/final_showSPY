@@ -12,12 +12,15 @@
 
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+        <script src="https://use.fontawesome.com/abdb64e05b.js"></script>
         <link rel='stylesheet' type='text/css' href='/css/main.css'>
+        <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     </head>
-    <body ng-controller="DashboardController as dashCtl" class="container">
-      <nav class="navbar navbar-default navbar-static-top" id='steel'>
-        <div class="container">
+    <body ng-controller="DashboardController as dashCtl">
+      <nav class="navbar navbar-default navbar-static-top entire" id='steel'>
+        <div class="container top">
+          <i class="fa fa-user-secret fa-5x" aria-hidden="true"></i>
+          <h1 class='title'>showSPY</h1>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
@@ -25,6 +28,7 @@
         </ul>
       </div>
     </nav>
+
 
 
         <h1>Welcome to your dashboard!</h1>
@@ -88,9 +92,61 @@
                     <h5>Where to find it?</h5>
                       <ul>
                         <li ng-repeat='each in dashCtl.showInfoSources'>
-                          <p>{{each.source}}</p>
+                          <p>{{each.display_name}}</p>
                         </li>
                       </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+
+            </li>
+        </ul>
+
+         <!-- movies -->
+        <h3>Search movies</h3>
+        <form ng-submit='dashCtl.searchMovies()'>
+          <input type='text' ng-model='dashCtl.searchMovieText' placeholder='Search for movies'>
+          <input type='submit'>
+        </form>
+
+
+        <ul class='horizontal'>
+          <li ng-repeat='result in dashCtl.moviesResponse' ng-click='dashCtl.moviesInfo(result)'>
+            <!-- <p hidden id='showID'>{{result.id}}</p> -->
+            <a data-toggle="modal" href="#normalModal" class="btn btn-default" >
+              <img  ng-src='{{result.poster_240x342}}'>
+            </a>
+            <div id="normalModal" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <!-- <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4>{{result.title}}</h4>
+                  </div> -->
+                  <div class="modal-body">
+                    <!-- <p>One fine body&hellip;</p> -->
+                    <img ng-src='{{dashCtl.movieInfo.poster_240x342}}'>
+                    <p>{{dashCtl.movieInfo.overview}}</p>
+                    <h3>Where to find it?</h3>
+                    <h5>Subscription services:</h5>
+                      <ul>
+                        <li ng-repeat='each in dashCtl.movieInfo.subscription_web_sources'>
+                          <a href='{{each.link}}'><p>{{each.display_name}}</p></a>
+                        </li>
+                      </ul>
+                      <h5>Online stores:</h5>
+                        <ul>
+                          <li ng-repeat='movie in dashCtl.movieInfo.purchase_web_sources'>
+                            <p>{{movie.display_name}}</p>
+                          </li>
+                        </ul>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
