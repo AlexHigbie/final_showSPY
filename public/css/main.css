@@ -17,6 +17,10 @@ border-top: 5px;
   margin-bottom: 20px;
 }
 
+.nobullets {
+  list-style-type: none;
+}
+
 .top {
   padding-top: 5px;
   background-color: #404D52
@@ -38,7 +42,11 @@ form {
   text-align: center;
 }
 
-h1, h3 {
+label {
+  text-decoration-color: white;
+}
+
+h1, h3, h5 {
   text-align: center;
   color: white;
 }

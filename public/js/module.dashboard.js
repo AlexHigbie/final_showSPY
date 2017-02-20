@@ -1,7 +1,7 @@
 angular.module('module.dashboard', [])
     .controller('DashboardController', Dashboard);
 
-var api_key = process.env.GUIDEBOX_APIKEY
+var api_key = process.env.GUIDEBOXAPIKEY
 
 
     Dashboard.$inject=['$http']
@@ -10,6 +10,7 @@ function Dashboard($http) {
     console.info('Dashboard.initialized');
 
     var dashCtl = this
+
 
     // function getNewShows(){
     //   console.log("getting new shows")
@@ -38,36 +39,52 @@ function Dashboard($http) {
     dashCtl.search = function(){
       var show = dashCtl.searchText
       console.log('you searched for ', show)
-      $http.get('http://api-public.guidebox.com/v2/search?api_key='+api_key+ '&type=show&query='+ show)
+      $http.get('/key')
       .then(function(res, err){
-        console.log(res.data)
-        dashCtl.showsResponse = res.data.results
+        var api_key = res.data
+        
+        $http.get('http://api-public.guidebox.com/v2/search?api_key='+ api_key + '&type=show&query='+ show)
+        .then(function(res, err){
+          console.log(res.data)
+          dashCtl.showsResponse = res.data.results
+        })
       })
+
     }
 
     dashCtl.showInfo = function(result) {
       console.log(result)
       // console.log(id)
-      $http.get('http://api-public.guidebox.com/v2/shows/' + result.id + '/available_content?api_key='+ api_key)
+      $http.get('/key')
       .then(function(res, err){
-        console.log(res.data)
-        dashCtl.showInfoSources = res.data.results.web.episodes.all_sources
+        var api_key = res.data
+        $http.get('http://api-public.guidebox.com/v2/shows/' + result.id + '/available_content?api_key='+ api_key)
+        .then(function(res, err){
+          console.log(res.data)
+          dashCtl.showInfoSources = res.data.results.web.episodes.all_sources
+        })
+        $http.get('http://api-public.guidebox.com/v2/shows/'+ result.id +'?api_key='+ api_key)
+        .then(function(res, err){
+          console.log(res.data)
+          dashCtl.moreInfo = res.data
+        })
       })
-      $http.get('http://api-public.guidebox.com/v2/shows/'+ result.id +'?api_key='+ api_key)
-      .then(function(res, err){
-        console.log(res.data)
-        dashCtl.moreInfo = res.data
-      })
+
     }
 
     dashCtl.searchMovies = function(){
       var movie = dashCtl.searchMovieText
       console.log('you searched for ', movie)
-      $http.get('http://api-public.guidebox.com/v2/search?api_key='+ api_key + '&type=movie&query='+ movie)
+      $http.get('/key')
       .then(function(res, err){
-        console.log(res.data)
-        dashCtl.moviesResponse = res.data.results
+        var api_key = res.data
+        $http.get('http://api-public.guidebox.com/v2/search?api_key='+ api_key + '&type=movie&query='+ movie)
+        .then(function(res, err){
+          console.log(res.data)
+          dashCtl.moviesResponse = res.data.results
+        })
       })
+
     }
 
     dashCtl.moviesInfo = function(result) {
@@ -78,11 +95,16 @@ function Dashboard($http) {
       //   console.log(res.data)
         // dashCtl.movieInfoSources = res.data.results.web.episodes.all_sources
       // })
-      $http.get('http://api-public.guidebox.com/v2/movies/'+ result.id +'?api_key='+ api_key)
+      $http.get('/key')
       .then(function(res, err){
-        console.log(res.data)
-        dashCtl.movieInfo = res.data
+        var api_key = res.data
+        $http.get('http://api-public.guidebox.com/v2/movies/'+ result.id +'?api_key='+ api_key)
+        .then(function(res, err){
+          console.log(result, res.data)
+          dashCtl.movieInfo = res.data
+        })
       })
+
     }
 
 
@@ -90,8 +112,8 @@ function Dashboard($http) {
 
 
 
-    getNewShows();
-    test();
+    // getNewShows();
+    // test();
 
     // getNewMovies();
 }

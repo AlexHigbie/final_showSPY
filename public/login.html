@@ -12,7 +12,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <link rel='stylesheet' type='text/css' href='./public/css/main.css'>
+    <link rel='stylesheet' type='text/css' href='/css/main.css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
     <script src='/js/auth.js'></script>
     <script src="https://use.fontawesome.com/abdb64e05b.js"></script>
@@ -22,16 +22,24 @@
   </head>
   <body ng-controller='module.auth.controller as auth'>
 
-    <nav class="navbar navbar-default navbar-static-top" id='steel'>
-      <div class="container top">
+    <nav class="navbar navbar-default navbar-static-top entire">
+      <div class="container">
         <i class="fa fa-user-secret fa-5x logo" aria-hidden="true"></i>
         <h1 class='title'>showSPY</h1>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
         <li><a href='/login-register'>Login/Sign Up</a></li>
-
-
+        <li><a href='/dashboard'>My Page</a></li>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li> -->
       </ul>
     </div>
   </nav>
@@ -49,33 +57,33 @@
       <button type="submit" class="btn btn-default">Submit</button>
     </form> -->
 
-    <h1>HELLO WORLD</h1>
+
 
       <form ng-submit="auth.login.submit($event)">
           <h1>Login</h1>
           <fieldset>
-              <label>Email</label>
+              <!-- <label>Email</label> -->
               <input required placeholder="Email" type="email" ng-model="auth.payloads.login.email"/>
           </fieldset>
           <fieldset>
-              <label for="password">Password</label>
+              <!-- <label for="password">Password</label> -->
               <input required placeholder="Password" type="password" ng-model="auth.payloads.login.password"/>
           </fieldset>
           <button type="submit">Login</button>
           <p ng-class="auth.login.alert">{{ auth.login.message }}</p>
       </form>
       <form ng-submit="auth.register.submit($event)">
-          <h1>Register</h1>
+          <h1 ng-click='newRegister()'>Register?</h1>
           <fieldset>
-              <label>Name</label>
+              <!-- <label>Name</label> -->
               <input required placeholder="'Fred Smith'" type='text' name='name' ng-model='auth.payloads.register.name'/>
             </fieldset>
             <fieldset>
-              <label>Email</label>
+              <!-- <label>Email</label> -->
               <input required placeholder="Email" type="email" ng-model="auth.payloads.register.email"/>
           </fieldset>
           <fieldset>
-              <label for="password">Password</label>
+              <!-- <label for="password">Password</label> -->
               <input required placeholder="Create a password" type="password" ng-model="auth.payloads.register.password"/>
           </fieldset>
           <button type="submit">Register</button>

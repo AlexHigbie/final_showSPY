@@ -7,6 +7,8 @@ var sessionsModule = require('client-sessions')
 
 var app = express();
 
+var key = process.env.GUIDEBOX_APIKEY
+
 
 mongoose.connect('mongodb://localhost/alexApp', function(mongooseErr){
   if(mongooseErr) {console.error(mongooseErr)}
@@ -86,10 +88,8 @@ app.get('/dashboard', checkIfLoggedIn, function(req, res){
   })
 })
 
-app.get('/whoami', checkIfLoggedInForAjax, function(req, res){
-    User.findOne({_id: req.session.uid}, function(err, user){
-        res.send(user)
-    })
+app.get('/key', function(req, res){
+    res.send(key)
 })
 
 app.post('/register', function(req, res) {

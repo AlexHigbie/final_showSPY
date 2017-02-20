@@ -24,8 +24,8 @@
           <h1 class='title'>showSPY</h1>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
           <li><a href='/login-register'>Login/Sign Up</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </nav>
@@ -33,7 +33,7 @@
 
 
         <h1>Uncover your entertainment</h1>
-        <p><a href="/logout" class="btn btn-lg btn-danger">Logout</a></p>
+        
 
         <!-- <h3>Shows</h3>
 
@@ -73,10 +73,12 @@
         </form>
 
 
-        <ul class='horizontal' style='list-style-type:none'>
+    <div class='container'>
+      <div class='row'>
+        <ul class='horizontal nobullets'>
 
           <li ng-repeat='result in dashCtl.showsResponse' ng-click='dashCtl.showInfo(result)'>
-            <!-- <p hidden id='showID'>{{result.id}}</p> -->
+            <div class='col-md-4 result'>
             <a data-toggle="modal" href="#normalModal" class="btn btn-default" >
               <img  ng-src='{{result.artwork_304x171}}'>
             </a>
@@ -109,9 +111,11 @@
               <!-- /.modal-dialog -->
             </div>
 
-
+              </div>
             </li>
         </ul>
+      </div>
+    </div>
 
 
          <!-- movies -->
@@ -124,8 +128,8 @@
     <div class='container'>
       <div class='row'>
 
-        <ul class='horizontal'>
-          <li ng-repeat='result in dashCtl.moviesResponse' ng-click='dashCtl.moviesInfo(result)'>
+        <ul class='horizontal nobullets'>
+          <li sytle='list-style-type:none' ng-repeat='result in dashCtl.moviesResponse' ng-click='dashCtl.moviesInfo(result)'>
             <div class='col-md-4 result'>
             <a data-toggle="modal" href="#normalModal" class="btn btn-default" >
               <img  ng-src='{{result.poster_240x342}}'>
@@ -155,6 +159,7 @@
                           </li>
                         </ul>
                   </div>
+                  <button>Add to my list</button>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 

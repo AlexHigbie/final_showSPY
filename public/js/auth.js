@@ -52,4 +52,9 @@ function Auth($http) { // window.Auth
             auth.register.message = ( err.data && err.data.message ) || 'Register failed, contact us!';
         }
     };
+
+
+  // auth.newRegister = {
+  //
+  // }
 }
