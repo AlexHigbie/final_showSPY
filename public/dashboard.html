@@ -15,11 +15,12 @@
         <script src="https://use.fontawesome.com/abdb64e05b.js"></script>
         <link rel='stylesheet' type='text/css' href='/css/main.css'>
         <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet">
     </head>
     <body ng-controller="DashboardController as dashCtl">
-      <nav class="navbar navbar-default navbar-static-top entire" id='steel'>
-        <div class="container top">
-          <i class="fa fa-user-secret fa-5x" aria-hidden="true"></i>
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <i class="fa fa-user-secret fa-5x logo" aria-hidden="true"></i>
           <h1 class='title'>showSPY</h1>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/">Home</a></li>
@@ -31,7 +32,7 @@
 
 
 
-        <h1>Welcome to your dashboard!</h1>
+        <h1>Uncover your entertainment</h1>
         <p><a href="/logout" class="btn btn-lg btn-danger">Logout</a></p>
 
         <!-- <h3>Shows</h3>
@@ -65,14 +66,15 @@
           <!-- /.modal-dialog -->
         <!-- </div> -->
 
-        <h3>Search shows</h3>
+        <h3 ng-click='unhide()'>Search shows</h3>
         <form ng-submit='dashCtl.search()'>
           <input type='text' ng-model='dashCtl.searchText' placeholder='Search for shows'>
           <input type='submit'>
         </form>
 
 
-        <ul class='horizontal'>
+        <ul class='horizontal' style='list-style-type:none'>
+
           <li ng-repeat='result in dashCtl.showsResponse' ng-click='dashCtl.showInfo(result)'>
             <!-- <p hidden id='showID'>{{result.id}}</p> -->
             <a data-toggle="modal" href="#normalModal" class="btn btn-default" >
@@ -95,6 +97,7 @@
                           <p>{{each.display_name}}</p>
                         </li>
                       </ul>
+                      <button>Add to my list</button>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -106,8 +109,10 @@
               <!-- /.modal-dialog -->
             </div>
 
+
             </li>
         </ul>
+
 
          <!-- movies -->
         <h3>Search movies</h3>
@@ -116,10 +121,12 @@
           <input type='submit'>
         </form>
 
+    <div class='container'>
+      <div class='row'>
 
         <ul class='horizontal'>
           <li ng-repeat='result in dashCtl.moviesResponse' ng-click='dashCtl.moviesInfo(result)'>
-            <!-- <p hidden id='showID'>{{result.id}}</p> -->
+            <div class='col-md-4 result'>
             <a data-toggle="modal" href="#normalModal" class="btn btn-default" >
               <img  ng-src='{{result.poster_240x342}}'>
             </a>
@@ -158,17 +165,13 @@
               <!-- /.modal-dialog -->
             </div>
 
-                          <!-- <ul class='horizontal'>
-                              <li ng-repeat='source in dashCtl.showInfoSources'>
-                                <p>{{source.source}}</p>
-                              </li>
-                          </ul> -->
-
+          </div>
 
 
             </li>
         </ul>
-
+    </div>
+  </div>
 
         <br>
         <br>
@@ -177,4 +180,7 @@
 
 
     </body>
+    <footer>
+      <p>HIGBIE productions 2017</p>
+    </footer>
 </html>

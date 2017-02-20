@@ -1,17 +1,38 @@
 /*.container {
   color: #4682b4;
 }*/
-.entire {
+/*.entire {
   width: 100vw;
+  color: #404D52
+}*/
+
+
+.logo {
+border-top: 5px;
+}
+
+.result {
+  position:relative;
+  padding: 2px;
+  margin-bottom: 20px;
 }
 
 .top {
   padding-top: 5px;
-  background-color: silver;
+  background-color: #404D52
+}
+
+li .repeat {
+  display:inline;
+}
+
+nav {
+  background-color: #404D52;
 }
 
 body {
-  background-color: gray;
+  background-color: #404D52;
+  font-family: 'Orbitron', sans-serif;
 }
 form {
   text-align: center;
@@ -19,11 +40,13 @@ form {
 
 h1, h3 {
   text-align: center;
+  color: white;
 }
 
 .title {
   display: inline-block;
   font-size: 35px;
+  color: black;
 }
 
 .horizontal {
@@ -31,12 +54,11 @@ h1, h3 {
 }
 
 .center {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 100%;
     text-align: center;
-    font-size: 60px;
+}
+
+footer p {
+  text-align: center;
 }
 
 .center2 {
