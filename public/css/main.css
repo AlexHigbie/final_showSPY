@@ -42,13 +42,13 @@ form {
   text-align: center;
 }
 
-label {
-  text-decoration-color: white;
-}
-
 h1, h3, h5 {
   text-align: center;
   color: white;
+}
+
+.modal-header {
+  text-decoration-color: black;
 }
 
 .title {

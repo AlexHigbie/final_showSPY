@@ -42,7 +42,7 @@ function Dashboard($http) {
       $http.get('/key')
       .then(function(res, err){
         var api_key = res.data
-        
+
         $http.get('http://api-public.guidebox.com/v2/search?api_key='+ api_key + '&type=show&query='+ show)
         .then(function(res, err){
           console.log(res.data)
@@ -106,6 +106,8 @@ function Dashboard($http) {
       })
 
     }
+
+    
 
 
 
